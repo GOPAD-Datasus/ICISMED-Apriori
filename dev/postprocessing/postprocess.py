@@ -2,7 +2,7 @@ from dev.postprocessing.utils import *
 
 
 def postprocess (n_cluster: int):
-    list_inter = [f'../data/intermediate/rules_{i}.csv'
+    list_inter = [f'data/intermediate/rules_{i}.csv'
                   for i in range(n_cluster)]
 
     for file, i in zip(list_inter, range(n_cluster)):
@@ -13,6 +13,6 @@ def postprocess (n_cluster: int):
         df_filtered['consequents'] = \
             df_filtered['consequents'].apply(clear_str)
         
-        final_path = f'../data/final/frules_{i}.csv'
+        final_path = f'data/final/frules_{i}.csv'
         df_filtered.to_csv(final_path,
                            index=False)

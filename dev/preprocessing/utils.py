@@ -9,7 +9,7 @@ from dev.preprocessing.feature_transformation import *
 
 
 def get_dataframe() -> pd.DataFrame:
-    path = '../data/raw/DN2022.parquet.gzip'
+    path = 'data/raw/DN2022.parquet.gzip'
     columns = ['APGAR5', 'CONSULTAS', 'GESTACAO', 'PESO',
                'MESPRENAT', 'IDADEMAE', 'ESTCIVMAE',
                'RACACOR', 'ESCMAE2010', 'CODOCUPMAE',
@@ -82,7 +82,7 @@ def apply_kmeans(df: pd.DataFrame) \
 
 def separate_clusters(n_cluster: int,
                       df: pd.DataFrame) -> None:
-    preprocessed_path = '../data/preprocessed'
+    preprocessed_path = 'data/preprocessed'
 
     for i in range(n_cluster):
         temp = df.loc[df['cluster'] == i]
