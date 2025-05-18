@@ -20,6 +20,12 @@ installed using the command:
 poetry install
 ```
 
+## ⚙ Run
+
+```bash
+python __main__.py
+```
+
 ## 🔮 Structure
 
 ````mermaid
