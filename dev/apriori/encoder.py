@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.preprocessing import OneHotEncoder
 
 
-def encode (file_path: str) -> pd.DataFrame:
+def encode(file_path: str) -> pd.DataFrame:
     df = pd.read_parquet(file_path)
 
     encoder = OneHotEncoder(sparse_output=False)

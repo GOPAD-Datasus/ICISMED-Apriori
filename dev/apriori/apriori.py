@@ -1,4 +1,4 @@
-from dev.apriori.utils import encode
+from .encoder import encode
 from mlxtend.frequent_patterns import apriori, association_rules
 
 
