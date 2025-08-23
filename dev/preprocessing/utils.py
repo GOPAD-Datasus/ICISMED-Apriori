@@ -86,7 +86,7 @@ def separate_clusters(n_cluster: int,
     preprocessed_path = 'data/preprocessed'
 
     for i in range(n_cluster):
-        temp = df.loc[df['cluster'] == i]
+        temp = df.loc[df['cluster'] == i].copy()
         temp.drop(['cluster'], axis=1, inplace=True)
 
         temp.to_parquet(preprocessed_path +
