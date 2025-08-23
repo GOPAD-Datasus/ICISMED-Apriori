@@ -1,11 +1,12 @@
 from typing import Tuple
-from unittest.mock import inplace
-
-from sklearn.cluster import KMeans
 from math import sqrt
-from sklearn.preprocessing import MinMaxScaler
 
-from dev.preprocessing.feature_transformation import *
+import numpy as np
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import MinMaxScaler
+import pandas as pd
+
+from dev.preprocessing import feature_transformation as ft
 
 
 def get_dataframe() -> pd.DataFrame:

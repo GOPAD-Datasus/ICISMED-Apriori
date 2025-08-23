@@ -21,6 +21,7 @@ def filter_redundant_rules(file_path: str) -> pd.DataFrame:
 
     return filtered_rules
 
+
 def clear_str(x: str):
     x = x[11:-2]
     table = str.maketrans('', '', "'")

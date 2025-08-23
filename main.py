@@ -1,8 +1,6 @@
 import pandas as pd
 
-from dev.apriori.apriori import apply_apriori
-from dev.postprocessing.postprocess import postprocess
-from dev.preprocessing.preprocess import preprocess
+from dev import preprocess, apply_apriori, postprocess
 
 
 if __name__ == '__main__':

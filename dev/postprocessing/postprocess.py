@@ -1,4 +1,4 @@
-from dev.postprocessing.utils import *
+from .clear_rules import filter_redundant_rules, clear_str
 
 
 def postprocess (n_cluster: int):

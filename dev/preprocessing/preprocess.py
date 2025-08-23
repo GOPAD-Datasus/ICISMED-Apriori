@@ -1,4 +1,5 @@
-from dev.preprocessing.utils import *
+from .utils import (get_dataframe, apply_kmeans,
+                    classify_features, separate_clusters)
 
 
 def preprocess() -> int:
