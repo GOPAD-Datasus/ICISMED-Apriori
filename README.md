@@ -19,7 +19,7 @@ installed using the command:
 ```bash
 poetry install
 ```
-* Poetry is required to use the above command, for download info visit: [python-poetry.org](https://python-poetry.org/)
+* Poetry is required to use the command above, for download info visit: [python-poetry.org](https://python-poetry.org/)
 ## ⚙ Run
 
 ```bash
