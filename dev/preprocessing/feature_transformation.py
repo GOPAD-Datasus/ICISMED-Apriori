@@ -2,37 +2,15 @@ import numpy as np
 import pandas as pd
 
 """
-Unaltered columns: 
-
-- CONSULTAS:
-    1: Nenhuma
-    2: de 1 a 3
-    3: de 4 a 6
-    4: 7 e mais
-    
+Unaltered columns:
+- CONSULTAS
 - ESTCIVMAE
-    1: Solteira
-    2: Casada
-    3: Viúva
-    4: Separado judicialmente/Divorciado
-
 - RACACOR
-    1:Branca
-    2:Preta
-    3:Amarela
-    4: Parda
-    5: Indígena
-
 - ESCMAE2010
-    1: Nenhuma
-    2: 1 a 3 anos
-    3: 4 a 7 anos
-    4: 8 a 11 anos
-    5: 12 e mais
-
 - PARTO
-    1: Vaginal
-    2: Cesáreo
+
+These have the same category as listed in the docs:
+https://github.com/GOPAD-Datasus/DB_SINASC/blob/main/docs/features.md
 """
 
 
