@@ -48,17 +48,16 @@ def optimal_number_of_clusters(wcss: list) -> int:
     return distances.index(max(distances)) + 2
 
 
-def classify_features (df: pd.DataFrame) \
-        -> pd.DataFrame:
-    df['APGAR5'] = apgar(df)
-    df['GESTACAO'] = gestacao(df)
-    df['PESO'] = peso(df)
-    df['MESPRENAT'] = mesprenat(df)
-    df['IDADEMAE'] = idademae(df)
-    df['CODOCUPMAE'] = codocupmae(df)
-    df['QTDFILVIVO'] = qtdfilvivo(df)
-    df['QTDFILMORT'] = qtdfilmort(df)
-    df['CODMUNNASC'] = df['CODMUNNASC'].apply(codmunnasc)
+def classify_features(df: pd.DataFrame) -> pd.DataFrame:
+    df['APGAR5'] = ft.apgar(df)
+    df['GESTACAO'] = ft.gestacao(df)
+    df['PESO'] = ft.peso(df)
+    df['MESPRENAT'] = ft.mesprenat(df)
+    df['IDADEMAE'] = ft.idademae(df)
+    df['CODOCUPMAE'] = ft.codocupmae(df)
+    df['QTDFILVIVO'] = ft.qtdfilvivo(df)
+    df['QTDFILMORT'] = ft.qtdfilmort(df)
+    df['CODMUNNASC'] = df['CODMUNNASC'].apply(ft.codmunnasc)
 
     return df
 
@@ -81,8 +80,7 @@ def apply_kmeans(df: pd.DataFrame) \
     return kmeans.labels_, n_clusters
 
 
-def separate_clusters(n_cluster: int,
-                      df: pd.DataFrame) -> None:
+def separate_clusters(n_cluster: int, df: pd.DataFrame) -> None:
     preprocessed_path = 'data/preprocessed'
 
     for i in range(n_cluster):

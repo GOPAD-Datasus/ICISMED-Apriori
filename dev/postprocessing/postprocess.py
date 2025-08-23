@@ -1,7 +1,7 @@
 from .clear_rules import filter_redundant_rules, clear_str
 
 
-def postprocess (n_cluster: int):
+def postprocess(n_cluster: int) -> None:
     list_inter = [f'data/intermediate/rules_{i}.csv'
                   for i in range(n_cluster)]
 
@@ -12,7 +12,6 @@ def postprocess (n_cluster: int):
             df_filtered['antecedents'].apply(clear_str)
         df_filtered['consequents'] = \
             df_filtered['consequents'].apply(clear_str)
-        
+
         final_path = f'data/final/frules_{i}.csv'
-        df_filtered.to_csv(final_path,
-                           index=False)
+        df_filtered.to_csv(final_path, index=False)

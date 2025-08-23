@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 
-
 """
 Unaltered columns: 
 
@@ -39,14 +38,14 @@ Unaltered columns:
 
 def apgar(df: pd.DataFrame) -> np.array:
     conditions = [
-        (df['APGAR5'] <= 5), # 1, 2, 3, 4 e 5
-        (df['APGAR5'] <= 7), # 6 e 7
+        (df['APGAR5'] <= 5),  # 1, 2, 3, 4 e 5
+        (df['APGAR5'] <= 7),  # 6 e 7
         (df['APGAR5'] >= 8)  # 8, 9 e 10
     ]
 
     choices = [
-        1, # Very bad
-        2, # Bad
+        1,  # Very bad
+        2,  # Bad
         3  # Good
     ]
 
@@ -59,14 +58,14 @@ def gestacao(df: pd.DataFrame) -> np.array:
     conditions = [
         (df['GESTACAO'] < 3),  # 1 e 2
         (df['GESTACAO'] < 5),  # 3 e 4
-        (df['GESTACAO'] == 5), # 5
+        (df['GESTACAO'] == 5),  # 5
         (df['GESTACAO'] == 6)  # 6
     ]
 
     choices = [
-        1, # Pre termo extremo
-        2, # Pre termo
-        3, # Normal
+        1,  # Pre termo extremo
+        2,  # Pre termo
+        3,  # Normal
         4  # Pos termo
     ]
 
@@ -75,7 +74,7 @@ def gestacao(df: pd.DataFrame) -> np.array:
                      default=np.nan)
 
 
-def peso (df: pd.DataFrame) -> np.array:
+def peso(df: pd.DataFrame) -> np.array:
     conditions = [
         (df['PESO'] < 2500),
         (df['PESO'] < 4000),
@@ -85,7 +84,7 @@ def peso (df: pd.DataFrame) -> np.array:
     choices = [
         1,  # Peso baixo
         2,  # Peso normal
-        3   # Peso alto
+        3  # Peso alto
     ]
 
     return np.select(conditions,
@@ -93,17 +92,17 @@ def peso (df: pd.DataFrame) -> np.array:
                      default=np.nan)
 
 
-def mesprenat (df: pd.DataFrame) -> np.array:
+def mesprenat(df: pd.DataFrame) -> np.array:
     conditions = [
-        (df['MESPRENAT'] <= 3), # 1, 2 e 3
-        (df['MESPRENAT'] <= 6), # 4, 5 e 6
+        (df['MESPRENAT'] <= 3),  # 1, 2 e 3
+        (df['MESPRENAT'] <= 6),  # 4, 5 e 6
         (df['MESPRENAT'] <= 9)  # 7, 8 e 9
     ]
 
     choices = [
         1,  # Início bom
         2,  # Início ruim
-        3   # Início extremamente ruim
+        3  # Início extremamente ruim
     ]
 
     return np.select(conditions,
@@ -111,12 +110,12 @@ def mesprenat (df: pd.DataFrame) -> np.array:
                      default=np.nan)
 
 
-def idademae (df: pd.DataFrame) -> np.array:
+def idademae(df: pd.DataFrame) -> np.array:
     conditions = [
-        (df['IDADEMAE'] <= 20), # [  , 20]
-        (df['IDADEMAE'] <= 29), # [21, 29]
-        (df['IDADEMAE'] <= 35), # [30, 35]
-        (df['IDADEMAE'] > 35)   # [36,   ]
+        (df['IDADEMAE'] <= 20),  # [  , 20]
+        (df['IDADEMAE'] <= 29),  # [21, 29]
+        (df['IDADEMAE'] <= 35),  # [30, 35]
+        (df['IDADEMAE'] > 35)  # [36,   ]
     ]
 
     choices = [
@@ -139,7 +138,7 @@ def codocupmae(df: pd.DataFrame) -> np.array:
 
     choices = [
         1,  # Dona de casa
-        2   # Não dona de casa (trabalha)
+        2  # Não dona de casa (trabalha)
     ]
 
     return np.select(conditions,
@@ -147,17 +146,17 @@ def codocupmae(df: pd.DataFrame) -> np.array:
                      default=np.nan)
 
 
-def qtdfilvivo (df: pd.DataFrame) -> np.array:
+def qtdfilvivo(df: pd.DataFrame) -> np.array:
     conditions = [
-        (df['QTDFILVIVO'] == 0), # 0
-        (df['QTDFILVIVO'] <= 2), # 1 e 2
+        (df['QTDFILVIVO'] == 0),  # 0
+        (df['QTDFILVIVO'] <= 2),  # 1 e 2
         (df['QTDFILVIVO'] >= 3)  # 3+
     ]
 
     choices = [
         0,  # 0 filhos
         1,  # 1 ou 2 filhos
-        2   # 3+ filhos
+        2  # 3+ filhos
     ]
 
     return np.select(conditions,
@@ -165,7 +164,7 @@ def qtdfilvivo (df: pd.DataFrame) -> np.array:
                      default=np.nan)
 
 
-def qtdfilmort (df: pd.DataFrame) -> np.array:
+def qtdfilmort(df: pd.DataFrame) -> np.array:
     conditions = [
         df['QTDFILMORT'] == 0,
         df['QTDFILMORT'] != 0
@@ -173,7 +172,7 @@ def qtdfilmort (df: pd.DataFrame) -> np.array:
 
     choices = [
         0,  # Nenhum filho morto
-        1   # 1+ filho(s) morto(s)
+        1  # 1+ filho(s) morto(s)
     ]
 
     return np.select(conditions,

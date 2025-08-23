@@ -2,9 +2,9 @@ from .encoder import encode
 from mlxtend.frequent_patterns import apriori, association_rules
 
 
-def apply_apriori (n_cluster: int):
+def apply_apriori(n_cluster: int):
     file_list = [f'data/preprocessed/cluster_{i}.parquet'
-                 for i in range(n_cluster) ]
+                 for i in range(n_cluster)]
 
     for file, i in zip(file_list, range(n_cluster)):
         df_encoded = encode(file)
