@@ -19,11 +19,11 @@ installed using the command:
 ```bash
 poetry install
 ```
-
+* Poetry is required to use the above command, for download info visit: [python-poetry.org](https://python-poetry.org/)
 ## ⚙ Run
 
 ```bash
-python __main__.py
+poetry run python main.py
 ```
 
 ## 🔮 Structure
