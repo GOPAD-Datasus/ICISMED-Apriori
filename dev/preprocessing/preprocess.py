@@ -1,5 +1,4 @@
-from .utils import (get_dataframe, apply_kmeans,
-                    classify_features, separate_clusters)
+from .utils import get_dataframe, apply_kmeans, classify_features, separate_clusters
 
 
 def preprocess() -> int:
@@ -7,7 +6,7 @@ def preprocess() -> int:
 
     df_apriori.dropna(inplace=True)
 
-    df_apriori['cluster'], n_clusters = apply_kmeans(df_apriori)
+    df_apriori["cluster"], n_clusters = apply_kmeans(df_apriori)
 
     df_apriori = classify_features(df_apriori)
 

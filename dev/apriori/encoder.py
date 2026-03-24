@@ -8,6 +8,4 @@ def encode(file_path: str) -> pd.DataFrame:
     encoder = OneHotEncoder(sparse_output=False)
     df_encoded = encoder.fit_transform(df)
 
-    return pd.DataFrame(df_encoded,
-                        columns=encoder.get_feature_names_out(),
-                        dtype=bool)
+    return pd.DataFrame(df_encoded, columns=encoder.get_feature_names_out(), dtype=bool)

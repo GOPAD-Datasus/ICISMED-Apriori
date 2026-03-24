@@ -10,12 +10,24 @@ from dev.preprocessing import feature_transformation as ft
 
 
 def get_dataframe() -> pd.DataFrame:
-    path = 'data/raw/DN2022.parquet.gzip'
-    columns = ['APGAR5', 'CONSULTAS', 'GESTACAO', 'PESO',
-               'MESPRENAT', 'IDADEMAE', 'ESTCIVMAE',
-               'RACACOR', 'ESCMAE2010', 'CODOCUPMAE',
-               'CODMUNNASC', 'PARTO', 'QTDFILVIVO',
-               'QTDFILMORT', 'TPROBSON']
+    path = "data/raw/DN2022.parquet.gzip"
+    columns = [
+        "APGAR5",
+        "CONSULTAS",
+        "GESTACAO",
+        "PESO",
+        "MESPRENAT",
+        "IDADEMAE",
+        "ESTCIVMAE",
+        "RACACOR",
+        "ESCMAE2010",
+        "CODOCUPMAE",
+        "CODMUNNASC",
+        "PARTO",
+        "QTDFILVIVO",
+        "QTDFILMORT",
+        "TPROBSON",
+    ]
 
     return pd.read_parquet(path, columns=columns)
 
@@ -39,53 +51,46 @@ def optimal_number_of_clusters(wcss: list) -> int:
         x0 = i + 2
         y0 = wcss[i]
 
-        numerator = abs((y2 - y1) * x0 - (x2 - x1)
-                        * y0 + x2 * y1 - y2 * x1)
-        denominator = sqrt((y2 - y1) ** 2
-                           + (x2 - x1) ** 2)
+        numerator = abs((y2 - y1) * x0 - (x2 - x1) * y0 + x2 * y1 - y2 * x1)
+        denominator = sqrt((y2 - y1) ** 2 + (x2 - x1) ** 2)
         distances.append(numerator / denominator)
 
     return distances.index(max(distances)) + 2
 
 
 def classify_features(df: pd.DataFrame) -> pd.DataFrame:
-    df['APGAR5'] = ft.apgar(df)
-    df['GESTACAO'] = ft.gestacao(df)
-    df['PESO'] = ft.peso(df)
-    df['MESPRENAT'] = ft.mesprenat(df)
-    df['IDADEMAE'] = ft.idademae(df)
-    df['CODOCUPMAE'] = ft.codocupmae(df)
-    df['QTDFILVIVO'] = ft.qtdfilvivo(df)
-    df['QTDFILMORT'] = ft.qtdfilmort(df)
-    df['CODMUNNASC'] = df['CODMUNNASC'].apply(ft.codmunnasc)
+    df["APGAR5"] = ft.apgar(df)
+    df["GESTACAO"] = ft.gestacao(df)
+    df["PESO"] = ft.peso(df)
+    df["MESPRENAT"] = ft.mesprenat(df)
+    df["IDADEMAE"] = ft.idademae(df)
+    df["CODOCUPMAE"] = ft.codocupmae(df)
+    df["QTDFILVIVO"] = ft.qtdfilvivo(df)
+    df["QTDFILMORT"] = ft.qtdfilmort(df)
+    df["CODMUNNASC"] = df["CODMUNNASC"].apply(ft.codmunnasc)
 
     return df
 
 
-def apply_kmeans(df: pd.DataFrame) \
-        -> Tuple[np.array, int]:
-    df.drop('TPROBSON', axis=1, inplace=True)
+def apply_kmeans(df: pd.DataFrame) -> Tuple[np.array, int]:
+    df.drop("TPROBSON", axis=1, inplace=True)
 
     scaler = MinMaxScaler()
     df = scaler.fit_transform(df)
 
-    n_clusters = optimal_number_of_clusters(
-        calculate_wcss(df)
-    )
+    n_clusters = optimal_number_of_clusters(calculate_wcss(df))
 
-    kmeans = KMeans(n_clusters=n_clusters,
-                    random_state=72)
+    kmeans = KMeans(n_clusters=n_clusters, random_state=72)
     kmeans.fit_transform(df)
 
     return kmeans.labels_, n_clusters
 
 
 def separate_clusters(n_cluster: int, df: pd.DataFrame) -> None:
-    preprocessed_path = 'data/preprocessed'
+    preprocessed_path = "data/preprocessed"
 
     for i in range(n_cluster):
-        temp = df.loc[df['cluster'] == i].copy()
-        temp.drop(['cluster'], axis=1, inplace=True)
+        temp = df.loc[df["cluster"] == i].copy()
+        temp.drop(["cluster"], axis=1, inplace=True)
 
-        temp.to_parquet(preprocessed_path +
-                        f'/cluster_{i}.parquet')
+        temp.to_parquet(preprocessed_path + f"/cluster_{i}.parquet")
